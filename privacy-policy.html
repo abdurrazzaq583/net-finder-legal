@@ -26,8 +26,9 @@
 <p>
   Net Finder is a network diagnostic and traffic monitoring tool. This policy
   explains what data the app handles and how it is used. Net Finder is designed
-  to work <strong>entirely on your device</strong> — it collects no personal data
-  and sends nothing anywhere unless you run a network test yourself.
+  to work <strong>entirely on your device</strong> and collects no personal data.
+  The only things it ever sends off-device are the network tests you start and
+  the <em>destination</em> IP addresses it looks up to show country / ISP labels.
 </p>
 
 <h2>Summary</h2>
@@ -35,8 +36,9 @@
   <li>We do <strong>not</strong> collect, transmit, sell, or share any personal data.</li>
   <li>Captured app-traffic statistics stay on your device.</li>
   <li>The app has no analytics, no advertising, and no user accounts.</li>
-  <li>The only outgoing network requests are ones <strong>you trigger</strong>
-      (network tests and reverse-DNS/GeoIP lookups for a remote server you view).</li>
+  <li>Outgoing requests are limited to network tests <strong>you start</strong>
+      (ping / speed test) and an automatic GeoIP + reverse-DNS lookup of the
+      <em>destination</em> IP addresses the Traffic Monitor discovers.</li>
 </ul>
 
 <h2>Network data the app processes</h2>
@@ -55,17 +57,20 @@
       the app's data.</li>
 </ul>
 
-<h2>Outgoing requests you trigger</h2>
-<p>Net Finder never sends data in the background. These requests only happen when you use
-   the corresponding feature:</p>
+<h2>Outgoing network requests</h2>
+<p>Net Finder does not send your data in the background. The only requests it makes are
+   the ones listed below, and none of them contain an account, contact, or personal
+   information:</p>
 <table>
   <thead><tr><th>Feature</th><th>What leaves the device</th></tr></thead>
   <tbody>
     <tr><td>Ping test</td><td>ICMP requests you run against a host you choose.</td></tr>
     <tr><td>Speed test</td><td>Download/upload transfer to/from Cloudflare's public speed-test
         service (<code>speed.cloudflare.com</code>) over HTTPS.</td></tr>
-    <tr><td>Viewing a remote IP's info</td><td>A DNS reverse lookup (PTR) and an HTTPS query to
-        the <code>ipwho.is</code> service to show country / ISP / ASN for that IP.</td></tr>
+    <tr><td>Traffic Monitor (automatic)</td><td>For each newly seen destination IP, a DNS
+        reverse lookup (PTR) and an HTTPS query to the <code>ipwho.is</code> service to show
+        country / ISP / ASN. Only the destination IP being looked up is sent — never your
+        traffic content or your identity.</td></tr>
     <tr><td>Diagnostic report share</td><td>Only when <strong>you</strong> tap Share — the report
         is sent through any app you pick.</td></tr>
   </tbody>
@@ -80,6 +85,10 @@
   <li>No advertising ID.</li>
   <li>No crash or usage analytics sent to a server.</li>
 </ul>
+<p class="muted">Note: the GeoIP lookup described above sends only the
+   <em>destination</em> IP address being looked up (a public server address) to
+   <code>ipwho.is</code>. It does not send your device identity, your own IP as a
+   profile, or the content of your traffic.</p>
 
 <h2>Sharing / export</h2>
 <p>
