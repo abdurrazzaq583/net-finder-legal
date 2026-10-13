@@ -37,8 +37,10 @@
   <li>Captured app-traffic statistics stay on your device.</li>
   <li>The app has no analytics, no advertising, and no user accounts.</li>
   <li>Outgoing requests are limited to network tests <strong>you start</strong>
-      (ping / speed test) and an automatic GeoIP + reverse-DNS lookup of the
-      <em>destination</em> IP addresses the Traffic Monitor discovers.</li>
+      (ping / speed test) and an <strong>optional</strong> GeoIP + reverse-DNS
+      lookup of the <em>destination</em> IP addresses the Traffic Monitor
+      discovers — this lookup is <strong>off by default</strong> and turns on only
+      if you enable it in the app menu.</li>
 </ul>
 
 <h2>Network data the app processes</h2>
@@ -51,6 +53,9 @@
 <ul>
   <li>Captured traffic is <strong>processed locally in memory</strong> to compute statistics.</li>
   <li>Traffic is forwarded to its real destination so your internet keeps working.</li>
+  <li>While monitoring is active, your DNS requests are routed through the tunnel
+      to the public resolvers <code>1.1.1.1</code> (Cloudflare) and <code>8.8.8.8</code>
+      (Google).</li>
   <li>Net Finder does <strong>not</strong> inspect, store, or transmit the content of your
       traffic (no messages, no credentials, no media).</li>
   <li>Flow statistics and ping logs remain on your device and are cleared when you clear
@@ -67,10 +72,12 @@
     <tr><td>Ping test</td><td>ICMP requests you run against a host you choose.</td></tr>
     <tr><td>Speed test</td><td>Download/upload transfer to/from Cloudflare's public speed-test
         service (<code>speed.cloudflare.com</code>) over HTTPS.</td></tr>
-    <tr><td>Traffic Monitor (automatic)</td><td>For each newly seen destination IP, a DNS
-        reverse lookup (PTR) and an HTTPS query to the <code>ipwho.is</code> service to show
-        country / ISP / ASN. Only the destination IP being looked up is sent — never your
-        traffic content or your identity.</td></tr>
+    <tr><td>Traffic Monitor country/ISP labels
+        <em>(optional — off by default)</em></td><td>If you enable "Country/ISP lookup" in the app
+        menu, then for each newly seen destination IP a DNS reverse lookup (PTR) and an HTTPS
+        query to the <code>ipwho.is</code> service are made to show country / ISP / ASN. Only the
+        destination IP being looked up is sent — never your traffic content or your identity.
+        Nothing is sent until you turn the setting on.</td></tr>
     <tr><td>Diagnostic report share</td><td>Only when <strong>you</strong> tap Share — the report
         is sent through any app you pick.</td></tr>
   </tbody>
@@ -85,10 +92,10 @@
   <li>No advertising ID.</li>
   <li>No crash or usage analytics sent to a server.</li>
 </ul>
-<p class="muted">Note: the GeoIP lookup described above sends only the
-   <em>destination</em> IP address being looked up (a public server address) to
-   <code>ipwho.is</code>. It does not send your device identity, your own IP as a
-   profile, or the content of your traffic.</p>
+<p class="muted">Note: the GeoIP lookup described above is disabled by default and
+   sends only the <em>destination</em> IP address being looked up (a public server
+   address) to <code>ipwho.is</code>. It does not send your device identity, your own
+   IP as a profile, or the content of your traffic.</p>
 
 <h2>Sharing / export</h2>
 <p>
